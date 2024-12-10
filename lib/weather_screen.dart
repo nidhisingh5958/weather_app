@@ -16,11 +16,7 @@ class WeatherScreen extends StatefulWidget {
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
-  @override
-  void initState() {
-    super.initState();
-    getCurrentWeather();
-  }
+  late Future<Map<String, dynamic>> weather;
 
   Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
@@ -30,14 +26,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
       final data = jsonDecode(res.body);
 
-      // if (res.statusCode != 200) {
-      //   throw "Failed to load weather data";
-      // }
+      if (res.statusCode != 200) {
+        throw "Failed to load weather data";
+      }
 
       return data;
     } catch (e) {
       throw e.toString();
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    weather = getCurrentWeather();
   }
 
   @override
@@ -54,13 +56,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
           centerTitle: true,
           actions: [
             IconButton(
+              onPressed: () {
+                setState(() {
+                  weather = getCurrentWeather();
+                });
+              },
               icon: const Icon(Icons.refresh),
-              onPressed: () {},
             ),
           ],
         ),
         body: FutureBuilder(
-          future: getCurrentWeather(),
+          future: weather,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -72,9 +78,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
               return Center(child: Text(snapshot.error.toString()));
             }
 
-            final data = snapshot.data;
+            final data = snapshot.data!;
 
-            final currentWeather = data!["current"];
+            final currentWeather = data["current"];
             final currentTemp = currentWeather["temp_c"];
             final currentSky = currentWeather["condition"]["text"];
             final currentIconUrl =
@@ -106,7 +112,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  currentTemp.toString(),
+                                  '$currentTemp °C',
                                   style: const TextStyle(
                                     fontSize: 32,
                                     fontWeight: FontWeight.bold,
@@ -144,21 +150,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
                   //weather forecast card
                   const SizedBox(height: 15),
-                  // SingleChildScrollView(
-                  //   scrollDirection: Axis.horizontal,
-                  //   child: Row(
-                  //     children: [
-                  //       for (int i = 0; i < 5; i++)
-                  //         HourlyForecastItem(
-                  //           icon: Icons.wb_sunny,
-                  //           // data["forecast"]["forecastday"][0]["hour"]
-                  //           // [i + 1]["condition"]["icon"],
-                  //           time: currentWeather["last_updated"].toString(),
-                  //           value: currentWeather["temp_c"].toString(),
-                  //         )
-                  //     ],
-                  //   ),
-                  // ),
+
                   SizedBox(
                     height: 120,
                     child: ListView.builder(
