@@ -1,16 +1,25 @@
-# weather_app
+# Weather App
 
-A new Flutter project.
+A feature-rich weather application providing real-time weather updates and comprehensive forecasting tools.
 
-## Getting Started
+## Existing Features
 
-This project is a starting point for a Flutter application.
+- Real-time weather updates with severe weather alerts
+  
+## Upcoming Features
 
-A few resources to get you started if this is your first Flutter project:
+- Interactive radar map with precipitation tracking
+- Hourly and 10-day detailed forecasts
+- UV index and air quality monitoring
+- Weather-based activity recommendations
+- Weather history and data visualization
+- Weather-responsive widgets
+- Smart clothing recommendations
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Usage
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Since this project hasn't been deployed yet so to use it follow the following steps:-
+- In the build folder got to app folder
+- There go to outputs folder then go to flutter-apk
+- From there download app-release.apk
+
