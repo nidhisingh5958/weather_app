@@ -11,8 +11,5 @@ A feature-rich weather application providing real-time weather updates and compr
 - Interactive radar map with precipitation tracking
 - Hourly and 10-day detailed forecasts
 - UV index and air quality monitoring
-- Weather-based activity recommendations
-- Weather history and data visualization
 - Weather-responsive widgets
-- Smart clothing recommendations
 
