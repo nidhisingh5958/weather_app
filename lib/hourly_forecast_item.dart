@@ -13,7 +13,7 @@ class HourlyForecastItem extends StatelessWidget {
     return Card(
       elevation: 6,
       child: Container(
-        width: 100,
+        width: 120,
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
